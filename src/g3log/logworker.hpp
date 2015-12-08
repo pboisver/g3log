@@ -17,7 +17,7 @@
 #include "g3log/filesink.hpp"
 #include "g3log/logmessage.hpp"
 #include "g3log/std2_make_unique.hpp"
-#include "g3log/g3dll.h"
+#include "g3log/g3dll.hpp"
 
 #include <memory>
 #include <string>

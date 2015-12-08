@@ -14,7 +14,7 @@
 #include "g3log/time.hpp"
 #include "g3log/moveoncopy.hpp"
 #include "g3log/crashhandler.hpp"
-#include "g3log/g3dll.h"
+#include "g3log/g3dll.hpp"
 #include <string>
 #include <sstream>
 #include <chrono>

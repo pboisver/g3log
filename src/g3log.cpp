@@ -138,7 +138,7 @@ namespace g3 {
        */
       bool shutDownLoggingForActiveOnly(LogWorker *active) {
          if (isLoggingInitialized() && nullptr != active && (active != g_logger_instance)) {
-            LOG(WARNING) << "\n\t\tAttempted to shut down logging, but the ID of the Logger is not the one that is active."
+            G3LOG_LOG(WARNING) << "\n\t\tAttempted to shut down logging, but the ID of the Logger is not the one that is active."
                          << "\n\t\tHaving multiple instances of the g3::LogWorker is likely a BUG"
                          << "\n\t\tEither way, this call to shutDownLogging was ignored"
                          << "\n\t\tTry g3::internal::shutDownLogging() instead";
