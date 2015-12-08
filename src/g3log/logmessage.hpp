@@ -14,7 +14,7 @@
 #include "g3log/time.hpp"
 #include "g3log/moveoncopy.hpp"
 #include "g3log/crashhandler.hpp"
-
+#include "g3log/g3dll.h"
 #include <string>
 #include <sstream>
 #include <chrono>
@@ -31,7 +31,7 @@ namespace g3 {
    * the helper functions or even the public raw data to format the saved log message any
    * desired way.
    */
-   struct LogMessage {
+   struct G3LOG_DYNAMICLIB LogMessage {
       std::string file() const {
          return _file;
       }

@@ -24,6 +24,7 @@
 #include "g3log/loglevels.hpp"
 #include "g3log/logcapture.hpp"
 #include "g3log/logmessage.hpp"
+#include "g3dll.hpp"
 
 #include <string>
 #include <cstdarg>
@@ -59,7 +60,7 @@ namespace g3 {
 
    /** Should be called at very first startup of the software with \ref g3LogWorker
     *  pointer. Ownership of the \ref g3LogWorker is the responsibilkity of the caller */
-   void initializeLogging(LogWorker *logger);
+   G3LOG_DYNAMICLIB void initializeLogging(LogWorker *logger);
 
 
    /** setFatalPreLoggingHook() provides an optional extra step before the fatalExitHandler is called
@@ -136,11 +137,11 @@ namespace g3 {
 
 
 // LOG(level) is the API for the stream log
-#define LOG(level) if(g3::logLevel(level)) INTERNAL_LOG_MESSAGE(level).stream()
+#define G3LOG_LOG(level) if(g3::logLevel(level)) INTERNAL_LOG_MESSAGE(level).stream()
 
 
 // 'Conditional' stream log
-#define LOG_IF(level, boolean_expression)  \
+#define G3LOG_LOG_IF(level, boolean_expression)  \
    if(true == boolean_expression)  \
       if(g3::logLevel(level))  INTERNAL_LOG_MESSAGE(level).stream()
 
@@ -199,23 +200,23 @@ And here is possible output
 :      floats: 3.14 +3e+000 3.141600E+000
 :      Width trick:    10
 :      A string  \endverbatim */
-#define LOGF(level, printf_like_message, ...)                 \
+#define G3LOG_LOGF(level, printf_like_message, ...)                 \
    if(g3::logLevel(level)) INTERNAL_LOG_MESSAGE(level).capturef(printf_like_message, ##__VA_ARGS__)
 
 // Conditional log printf syntax
-#define LOGF_IF(level,boolean_expression, printf_like_message, ...) \
+#define G3LOG_LOGF_IF(level,boolean_expression, printf_like_message, ...) \
    if(true == boolean_expression)                                     \
       if(g3::logLevel(level))  INTERNAL_LOG_MESSAGE(level).capturef(printf_like_message, ##__VA_ARGS__)
 
 // Design By Contract, printf-like API syntax with variadic input parameters.
 // Throws std::runtime_eror if contract breaks
-#define CHECKF(boolean_expression, printf_like_message, ...)    \
+#define G3LOG_CHECKF(boolean_expression, printf_like_message, ...)    \
    if (false == (boolean_expression))  INTERNAL_CONTRACT_MESSAGE(#boolean_expression).capturef(printf_like_message, ##__VA_ARGS__)
 
 // Backwards compatible. The same as CHECKF. 
 // Design By Contract, printf-like API syntax with variadic input parameters.
 // Throws std::runtime_eror if contract breaks
-#define CHECK_F(boolean_expression, printf_like_message, ...)    \
+#define G3LOG_CHECK_F(boolean_expression, printf_like_message, ...)    \
    if (false == (boolean_expression))  INTERNAL_CONTRACT_MESSAGE(#boolean_expression).capturef(printf_like_message, ##__VA_ARGS__)
 
 

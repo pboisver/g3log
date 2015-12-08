@@ -17,6 +17,7 @@
 #include "g3log/filesink.hpp"
 #include "g3log/logmessage.hpp"
 #include "g3log/std2_make_unique.hpp"
+#include "g3log/g3dll.h"
 
 #include <memory>
 #include <string>
@@ -30,7 +31,7 @@ namespace g3 {
    using FileSinkHandle = g3::SinkHandle<g3::FileSink>;
 
    /// Background side of the LogWorker. Internal use only
-   struct LogWorkerImpl final {
+   struct G3LOG_DYNAMICLIB LogWorkerImpl final {
       typedef std::shared_ptr<g3::internal::SinkWrapper> SinkWrapperPtr;
       std::vector<SinkWrapperPtr> _sinks;
       std::unique_ptr<kjellkod::Active> _bg; // do not change declaration order. _bg must be destroyed before sinks
