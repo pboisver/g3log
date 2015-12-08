@@ -65,8 +65,8 @@ namespace g3 {
          installCrashHandler();
       });
       std::lock_guard<std::mutex> lock(g_logging_init_mutex);
-      CHECK(!internal::isLoggingInitialized());
-      CHECK(bgworker != nullptr);
+      G3LOG_CHECK(!internal::isLoggingInitialized());
+      G3LOG_CHECK(bgworker != nullptr);
 
       // Save the first uninitialized message, if any
       std::call_once(g_save_first_unintialized_flag, [&bgworker] {

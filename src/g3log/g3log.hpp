@@ -148,7 +148,7 @@ namespace g3 {
 // 'Design By Contract' stream API. For Broken Contracts:
 //         unit testing: it will throw std::runtime_error when a contract breaks
 //         I.R.L : it will exit the application by using fatal signal SIGABRT
-#define CHECK(boolean_expression)        \
+#define G3LOG_CHECK(boolean_expression)        \
    if (false == (boolean_expression))  INTERNAL_CONTRACT_MESSAGE(#boolean_expression).stream()
 
 
