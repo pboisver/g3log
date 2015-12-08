@@ -8,6 +8,7 @@
 
 #include <g3log/g3log.hpp>
 #include <g3log/logworker.hpp>
+#include <g3log/macro_compat.hpp>
 
 #include <iostream>
 #include <cctype>

@@ -11,7 +11,7 @@
 #include <iomanip>
 #include <thread>
 #include <iostream>
-
+#include <g3log/macro_compat.hpp>
 
 namespace
 {
