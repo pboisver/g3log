@@ -1,0 +1,2 @@
+#define LOG G3LOG_LOG
+#define LOGF G3LOG_LOGF
