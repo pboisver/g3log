@@ -107,14 +107,14 @@ namespace g3 {
 
       /// helper function to tell the logger if a log message was fatal. If it is it will force
       /// a shutdown after all log entries are saved to the sinks
-      bool wasFatal(const LEVELS& level);
+      G3LOG_DYNAMICLIB bool wasFatal(const LEVELS& level);
    }
 
 #ifdef G3_DYNAMIC_LOGGING
    // Only safe if done at initialization in a single-thread context
    namespace only_change_at_initialization {
       // Enable/Disable a log level {DEBUG,INFO,WARNING,FATAL}
-      void setLogLevel(LEVELS level, bool enabled_status);
+      G3LOG_DYNAMICLIB void setLogLevel(LEVELS level, bool enabled_status);
       std::string printLevels();
       void reset();
 

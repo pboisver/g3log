@@ -52,7 +52,7 @@ namespace g3 {
    /// addSink( sink, default_call ) which returns a handle to the sink. See below and REAME for usage example
    /// save( msg ) : internal use
    /// fatal ( fatal_msg ) : internal use
-   class LogWorker final {
+   class G3LOG_DYNAMICLIB LogWorker final {
       LogWorker() = default;
       void addWrappedSink(std::shared_ptr<g3::internal::SinkWrapper> wrapper);
 
