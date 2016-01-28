@@ -34,7 +34,3 @@ ENDFOREACH(definition)
 
 MESSAGE("Generated ${GENERATED_G3_DEFINITIONS}")
 file(READ ${GENERATED_G3_DEFINITIONS} generated_content)
-
-MESSAGE("******************** START *************************")
-MESSAGE(${generated_content})
-MESSAGE("******************** END *************************")
