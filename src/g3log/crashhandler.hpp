@@ -11,7 +11,6 @@
 #include <csignal>
 #include <map>
 #include "g3log/loglevels.hpp"
-#include "g3log/generated_definitions.hpp"
 
 // kjell. Separera på crashhandler.hpp och crashhanlder_internal.hpp
 // implementationsfilen kan vara den samma
