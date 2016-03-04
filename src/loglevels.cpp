@@ -41,7 +41,7 @@ namespace g3 {
       }
 
 #ifdef G3_DYNAMIC_LOGGING
-      const std::map<int, atomicbool> kDefaultLogLevelStatus = {{g3::kDebugVaulue, true}, {INFO.value, true}, {WARNING.value, true}, {FATAL.value, true}};
+      const std::map<int, atomicbool> kDefaultLogLevelStatus = {{g3::kDebugValue, true}, {INFO.value, true}, {WARNING.value, true}, {FATAL.value, true}};
       std::map<int, atomicbool> g_log_level_status = kDefaultLogLevelStatus;
 #endif
    } // internal
