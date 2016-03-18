@@ -10,7 +10,6 @@
 
 namespace g3 {
    namespace internal {
-
       bool shouldBlockForFatalHandling() {
          return false;
       }
@@ -27,11 +26,9 @@ namespace g3 {
       }
    } // end g3::internal
 
-
    void overrideSetupSignals(const std::map<int, std::string> overrideSignals) {
    }
 
-   // restores the signal handler back to default
    void restoreSignalHandlerToDefault() {
    }
 
