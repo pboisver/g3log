@@ -44,7 +44,7 @@ namespace g3 {
       exit_msg.append(localtime_formatted(systemtime_now(), internal::time_formatted));
       filestream() << exit_msg << std::flush;
 
-      exit_msg.append({"\nLog file at: ["}).append(_log_file_with_path).append({"]\n\n"});
+      exit_msg.append("\nLog file at: [").append(_log_file_with_path).append("]\n\n");
       std::cerr << exit_msg << std::flush;
    }
 
