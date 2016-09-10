@@ -61,12 +61,10 @@ namespace g3 {
    //                    for all other practical use, it shouldn't!
 
    void initializeLogging(LogWorker *bgworker) {
-#if !defined(ANDROID)
-      // Let the Android system log handle native crashes.
       std::call_once(g_initialize_flag, [] {
          installCrashHandler();
       });
-#endif
+
       std::lock_guard<std::mutex> lock(g_logging_init_mutex);
       G3LOG_CHECK(!internal::isLoggingInitialized());
       G3LOG_CHECK(bgworker != nullptr);
