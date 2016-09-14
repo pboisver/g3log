@@ -26,6 +26,9 @@ namespace g3 {
       }
    } // end g3::internal
 
+   void installSignalHandlerForThread(void) {
+   }
+   
    void overrideSetupSignals(const std::map<int, std::string> overrideSignals) {
    }
 
