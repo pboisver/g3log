@@ -24,7 +24,7 @@ namespace g3 {
 
       // check for filename validity -  filename should not be part of PATH
       bool isValidFilename(const std::string &prefix_filename) {
-         std::string illegal_characters("/,|<>:#$%{}()[]\'\"^!?+* ");
+         std::string illegal_characters("/,|<>:#$%{}[]\'\"^!?+* ");
          size_t pos = prefix_filename.find_first_of(illegal_characters, 0);
          if (pos != std::string::npos) {
             std::cerr << "Illegal character [" << prefix_filename.at(pos) << "] in logname prefix: " << "[" << prefix_filename << "]" << std::endl;
@@ -81,13 +81,14 @@ namespace g3 {
          //  Day Month Date Time Year: is written as "%a %b %d %H:%M:%S %Y" and formatted output as : Wed Sep 19 08:28:16 2012
          ss_entry << "\t\tg3log created log at: " << g3::localtime_formatted(g3::systemtime_now(), "%a %b %d %H:%M:%S %Y") << "\n";
          ss_entry << "\t\tLOG format: [YYYY/MM/DD hh:mm:ss uuu* LEVEL FILE->FUNCTION:LINE] message";
-         ss_entry << "\t\t(uuu*: microsecond counter since initialization of log worker)\n\n";
+         ss_entry << "\t\t(uuu*: microseconds fractions of the seconds value)\n\n";
          return ss_entry.str();
       }
 
-      std::string createLogFileName(const std::string &verified_prefix) {
+      std::string createLogFileName(const std::string &verified_prefix, const std::string &logger_id) {
          std::stringstream oss_name;
-         oss_name << verified_prefix << ".g3log.";
+         oss_name << verified_prefix << ".";
+         if( logger_id != "" ) oss_name << logger_id << ".";
          oss_name << g3::localtime_formatted(g3::systemtime_now(), file_name_time_formatted);
          oss_name << ".log";
          return oss_name.str();

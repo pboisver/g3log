@@ -89,6 +89,24 @@ A logging sink is not required to be a subclass of a specific type. The only req
 
 ### Using the default sink
 Sink creation is defined in [logworker.hpp](src/g3log/logworker.hpp) and used in [logworker.cpp](src/logworker.cpp). For in-depth knowlege regarding sink implementation details you can look at [sinkhandle.hpp](src/g3log/sinkhandle.hpp) and [sinkwrapper.hpp](src/g3log/sinkwrapper.hpp)
+```
+  std::unique_ptr<FileSinkHandle> addDefaultLogger(
+            const std::string& log_prefix
+            , const std::string& log_directory
+            , const std::string& default_id = "g3log");
+```
+
+With the default id left as is (i.e. "g3log") a creation of the logger in the unit test "test_filechange" would look like this
+```
+  const std::string directory = "./";
+  const std::string name = "(ReplaceLogFile)";
+  auto worker = g3::LogWorker::createLogWorker();
+  auto handle = worker->addDefaultLogger(name, directory);
+```
+The resulting filename would be something like: 
+```
+./(ReplaceLogFile).g3log.20160217-001406.log
+```
 
 
 ## LOG <a name="log_flushing">flushing</a> 
@@ -167,3 +185,22 @@ The default behaviour for G3log is to catch several fatal events before they for
   build options are generated and saved to a header file. This avoid having to set the define options in the client source code
 
 
+
+# Say Thanks
+This logger is available for free and all of its source code is public domain.  
+Writing API documentation is probably the most boring task for a developer. 
+Did it help you? Could it be better? Please suggest changes, send me feedback or even better: open a pull request.
+
+You could also contribute by saying thanks with a a donation. It would go a long way not only to show your support but also to boost continued development of this logger and its API documentation
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/g3log/25)
+
+* $5 for a cup of coffee
+* $10 for pizza 
+* $25 for a lunch or two
+* $100 for a date night with my wife (which buys family credit for evening coding)
+* $$$ for upgrading my development environment
+* $$$$ :)
+
+Cheers
+Kjell

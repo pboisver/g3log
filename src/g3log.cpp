@@ -26,14 +26,13 @@
 #include "g3log/loglevels.hpp"
 
 
-#include <cstdio>    // vsnprintf
 #include <mutex>
-#include <csignal>
 #include <memory>
 #include <iostream>
 #include <thread>
 #include <atomic>
-
+#include <cstdlib>
+#include <sstream>
 
 namespace {
    std::once_flag g_initialize_flag;
@@ -66,8 +65,15 @@ namespace g3 {
       });
 
       std::lock_guard<std::mutex> lock(g_logging_init_mutex);
-      G3LOG_CHECK(!internal::isLoggingInitialized());
-      G3LOG_CHECK(bgworker != nullptr);
+      if (internal::isLoggingInitialized() || nullptr == bgworker) {
+         std::ostringstream exitMsg;
+         exitMsg << __FILE__ "->" << __FUNCTION__ << ":" << __LINE__ << std::endl;
+         exitMsg << "\tFatal exit due to illegal initialization of g3::LogWorker\n";
+         exitMsg << "\t(due to multiple initializations? : " << std::boolalpha << internal::isLoggingInitialized();
+         exitMsg << ", due to nullptr == bgworker? : " << std::boolalpha << (nullptr == bgworker) << ")";
+         std::cerr << exitMsg.str() << std::endl;
+         std::exit(EXIT_FAILURE);
+      }
 
       // Save the first uninitialized message, if any
       std::call_once(g_save_first_unintialized_flag, [&bgworker] {
@@ -110,9 +116,6 @@ namespace g3 {
    void setFatalExitHandler(std::function<void(FatalMessagePtr) > fatal_call) {
       g_fatal_to_g3logworker_function_ptr = fatal_call;
    }
-
-
-
 
 
    namespace internal {
